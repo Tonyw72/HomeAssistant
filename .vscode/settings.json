@@ -1,0 +1,16 @@
+{
+	"cSpell.customDictionaries": {
+		"custom-dictionary-folder-home-assistant2024-7": {
+			"name": "custom-dictionary-folder-home-assistant2024-7",
+			"path": "${workspaceFolder:Home.Assistant2024.7}/.cspell/custom-dictionary-folder-home-assistant2024-7.txt",
+			//"path": ".cspell/custom-dictionary-folder-home-assistant2024-7.txt",
+			"addWords": true,
+			"scope": "folder"
+		}
+	},
+	"files.exclude": {
+		"config/.cloud": true,
+		"config/.storage": true,
+		"**/.git": false
+	},
+}

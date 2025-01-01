@@ -1,0 +1,9 @@
+# Custom Dictionary Words
+alexa
+endfor
+endmacro
+endswith
+homeassistant
+hvac
+USGS
+ynab

@@ -1,0 +1,35 @@
+{% macro getFilteredEntities(myLabel, mySuffix) %}
+	{% set devices = label_devices(myLabel) %}
+  	{% set entities = namespace(entity_list=[]) %}
+  	{% for device in devices %}
+		{% set device_entities = device_entities(device) %}
+		{% for e in device_entities if (e.endswith(mySuffix)) %}
+      		{% set entities.entity_list = entities.entity_list + [e] %}
+    	{% endfor %}
+  	{% endfor %}
+  {{ entities.entity_list }}
+{% endmacro %}
+
+{% macro calculate_virtual_power(group_label, group_level) %}
+	{% set virtualpower =
+		expand('group.' ~ group_label ~ '_' ~ group_level ~ '_total_power')
+		| rejectattr('state', 'in', ['unavailable', 'unknown'])
+		| map(attribute='state')
+		| map('float')
+		| sum
+		| round(2)
+	%}
+	{{ max(virtualpower | round(1), 0.0) }}
+{% endmacro %}
+
+{% macro average_voltage() %}
+	{{
+      states.sensor
+      | selectattr('entity_id', 'match', '.*_voltage')
+      | rejectattr('state', 'in', ['unavailable', 'unknown'])
+      | map(attribute='state')
+      | map('float')
+      | average
+      | round(2)
+	}}
+{% endmacro %}

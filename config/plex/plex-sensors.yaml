@@ -1,0 +1,18 @@
+sensor:
+  - platform: plex_recently_added
+    <<: &plex_defaults
+      token: !secret plex_token
+      host: !secret plex_ip
+      port: 32400
+    name: plex_ondeck
+    on_deck: yes
+
+  - platform: plex_recently_added
+    <<: *plex_defaults
+    name: plex_recently_added_movies
+    section_types: movie
+
+  - platform: plex_recently_added
+    <<: *plex_defaults
+    name: plex_recently_added_shows
+    section_types: show

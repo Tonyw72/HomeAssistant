@@ -1,0 +1,43 @@
+#Surely there's a better way to do this without having to define each sensor
+sensor:
+  - platform: rest
+    name: Wildcat-Lafayette
+    resource: http://waterservices.usgs.gov/nwis/iv/?sites=03335000&parameterCd=00065&format=json
+    value_template: "{{ value_json.value.timeSeries[0]['values'][0]['value'][0]['value'] }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+
+  - platform: rest
+    name: Wildcat-South Fork
+    resource: http://waterservices.usgs.gov/nwis/iv/?sites=03334500&parameterCd=00065&format=json
+    value_template: "{{ value_json.value.timeSeries[0]['values'][0]['value'][0]['value'] }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+
+  - platform: rest
+    name: Wildcat-Owasco
+    resource: http://waterservices.usgs.gov/nwis/iv/?sites=03334000&parameterCd=00065&format=json
+    value_template: "{{ value_json.value.timeSeries[0]['values'][0]['value'][0]['value'] }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+
+  - platform: rest
+    name: Wildcat-Kokomo
+    resource: http://waterservices.usgs.gov/nwis/iv/?sites=03333700&parameterCd=00065&format=json
+    value_template: "{{ value_json.value.timeSeries[0]['values'][0]['value'][0]['value'] }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+
+  - platform: rest
+    name: Wildcat-Jerome
+    resource: http://waterservices.usgs.gov/nwis/iv/?sites=03333450&parameterCd=00065&format=json
+    value_template: "{{ value_json.value.timeSeries[0]['values'][0]['value'][0]['value'] }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800
+
+  - platform: rest
+    name: Wabash-Lafayette
+    resource: http://waterservices.usgs.gov/nwis/iv/?sites=03335500&parameterCd=00065&format=json
+    value_template: "{{ value_json.value.timeSeries[0]['values'][0]['value'][0]['value'] }}"
+    unit_of_measurement: "ft"
+    scan_interval: 1800

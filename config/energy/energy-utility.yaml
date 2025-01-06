@@ -1,0 +1,46 @@
+utility_meter:
+  technology_group_hourly_total_energy:
+    source: sensor.technology_group_total_energy
+    cycle: hourly
+  technology_group_daily_total_energy:
+    source: sensor.technology_group_total_energy
+    cycle: daily
+  technology_group_monthly_total_energy:
+    source: sensor.technology_group_total_energy
+    cycle: monthly
+  technology_group_quarterly_total_energy:
+    source: sensor.technology_group_total_energy
+    cycle: quarterly
+  technology_group_yearly_total_energy:
+    source: sensor.technology_group_total_energy
+    cycle: yearly
+
+  appliance_group_hourly_total_energy:
+    source: sensor.appliance_group_total_energy
+    cycle: hourly
+  appliance_group_daily_total_energy:
+    source: sensor.appliance_group_total_energy
+    cycle: daily
+  appliance_group_monthly_total_energy:
+    source: sensor.appliance_group_total_energy
+    cycle: monthly
+  appliance_group_quarterly_total_energy:
+    source: sensor.appliance_group_total_energy
+    cycle: quarterly
+  appliance_group_yearly_total_energy:
+    source: sensor.appliance_group_total_energy
+    cycle: yearly
+
+  hvac_group_daily_total_energy:
+    source: sensor.hvac_group_total_energy
+    cycle: daily
+  hvac_group_monthly_total_energy:
+    source: sensor.hvac_group_total_energy
+    cycle: monthly
+
+  entertainment_group_daily_total_energy:
+    source: sensor.entertainment_group_total_energy
+    cycle: daily
+  entertainment_group_monthly_total_energy:
+    source: sensor.entertainment_group_total_energy
+    cycle: monthly

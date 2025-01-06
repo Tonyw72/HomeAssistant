@@ -1,0 +1,101 @@
+template:
+  trigger:
+    - platform: time_pattern
+      seconds: "/5" #Only pull electric data every 5 seconds to minimize data / performance impact
+    - platform: homeassistant
+      event: start
+    - platform: event
+      event_type: "call_service"
+      event_data:
+        domain: "template"
+        service: "reload"
+
+  sensor:
+    - name: electric_home_voltage
+      attributes:
+        friendly_name: "Electric Home Voltage"
+        <<: &voltage_sensor_force_update
+          min_last_updated: "{{ now().minute }}" #Forces reporting every 1 min
+        <<: &voltage_sensor_defaults
+          device_class: voltage
+          unit_of_measurement: "V"
+          state_class: measurement
+      state: >
+        {% from 'filtered_entities.jinja' import average_voltage %}
+        {{ average_voltage() }}
+
+    #- name: technology_group_total_power
+    - unique_id: technology_group_total_power
+      icon: mdi:network
+      state: >
+        {% from 'filtered_entities.jinja' import calculate_virtual_power %}
+        {{ calculate_virtual_power('technology', 'group') }}
+      attributes:
+        #tmp_friendly_name: "Technology Devices"
+        friendly_name: "Tech Devices"
+        <<: &power_sensor_force_update
+          two_min_update: "{% if now().minute is divisibleby(2) %} {{now().minute}} {% else %} {{now().minute - 1 }} {% endif %}" #Ensure updates occur at least every 2 min for influx reporting
+        <<: &power_sensor_defaults
+          device_class: power
+          unit_of_measurement: "W"
+          state_class: measurement
+
+    - unique_id: networking_subgroup_total_power
+      icon: mdi:network-outline
+      state: >
+        {% from 'filtered_entities.jinja' import calculate_virtual_power %}
+        {{ calculate_virtual_power('networking', 'subgroup') }}
+      attributes:
+        friendly_name: "Networking Devices"
+        <<: *power_sensor_force_update
+        <<: *power_sensor_defaults
+
+    - unique_id: laptop_subgroup_total_power
+      icon: mdi:laptop
+      state: >
+        {% from 'filtered_entities.jinja' import calculate_virtual_power %}
+        {{ calculate_virtual_power('laptop', 'subgroup') }}
+      attributes:
+        friendly_name: "Laptops"
+        <<: *power_sensor_force_update
+        <<: *power_sensor_defaults
+
+    - unique_id: monitor_subgroup_total_power
+      icon: mdi:monitor-multiple
+      state: >
+        {% from 'filtered_entities.jinja' import calculate_virtual_power %}
+        {{ calculate_virtual_power('monitor', 'subgroup') }}
+      attributes:
+        friendly_name: "Monitors"
+        <<: *power_sensor_force_update
+        <<: *power_sensor_defaults
+
+    - unique_id: appliance_group_total_power
+      icon: mdi:fridge
+      state: >-
+        {% from 'filtered_entities.jinja' import calculate_virtual_power %}
+        {{ calculate_virtual_power('appliance', 'group') }}
+      attributes:
+        friendly_name: "Appliances"
+        <<: *power_sensor_force_update
+        <<: *power_sensor_defaults
+
+    - unique_id: hvac_group_total_power
+      icon: mdi:hvac
+      state: >-
+        {% from 'filtered_entities.jinja' import calculate_virtual_power %}
+        {{ calculate_virtual_power('hvac', 'group') }}
+      attributes:
+        friendly_name: "HVAC Equipment"
+        <<: *power_sensor_force_update
+        <<: *power_sensor_defaults
+
+    - unique_id: entertainment_group_total_power
+      icon: mdi:hvac
+      state: >-
+        {% from 'filtered_entities.jinja' import calculate_virtual_power %}
+        {{ calculate_virtual_power('entertainment', 'group') }}
+      attributes:
+        friendly_name: "Entertainment Devices"
+        <<: *power_sensor_force_update
+        <<: *power_sensor_defaults

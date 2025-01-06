@@ -1,0 +1,75 @@
+################  Create and update power groupings for circuits and devices  ###############
+# https://github.com/ccpk1/Home-Assistant-Energy-Management#create-a-template-trigger-for-all-energy-sensors
+automation:
+  - alias: "Update Power Groups"
+    trigger:
+      - platform: homeassistant
+        event: start
+      - platform: event
+        event_type: "call_service"
+        event_data:
+          domain: "group"
+          service: "reload"
+    action:
+      - service: group.set
+        data_template:
+          object_id: networking_subgroup_total_power
+          icon: mdi:network-outline
+          entities: >
+            {% from 'filtered_entities.jinja' import getFilteredEntities %}
+            {{ getFilteredEntities('networking', '_current_consumption') }}
+      - service: group.set
+        data_template:
+          object_id: laptop_subgroup_total_power
+          icon: mdi:laptop
+          entities: >
+            {% from 'filtered_entities.jinja' import getFilteredEntities %}
+            {{ getFilteredEntities('laptops', '_current_consumption') }}
+      - service: group.set
+        data_template:
+          object_id: monitor_subgroup_total_power
+          icon: mdi:monitor
+          entities: >
+            {% from 'filtered_entities.jinja' import getFilteredEntities %}
+            {{ getFilteredEntities('monitors', '_current_consumption') }}
+      - service: group.set
+        data_template:
+          object_id: technology_group_total_power
+          icon: mdi:network
+          entities: >
+            {% from 'filtered_entities.jinja' import getFilteredEntities %}
+            {{ getFilteredEntities('tech_all', '_current_consumption') }}
+      - service: group.set
+        data_template:
+          object_id: appliance_group_total_power
+          icon: mdi:fridge
+          entities: >
+            {% from 'filtered_entities.jinja' import getFilteredEntities %}
+            {{ getFilteredEntities('appliances', '_current_consumption') }}
+      - service: group.set
+        data_template:
+          object_id: hvac_group_total_power
+          icon: mdi:hvac
+          entities: >
+            {% from 'filtered_entities.jinja' import getFilteredEntities %}
+            {{ getFilteredEntities('HVAC', '_current_consumption') }}
+
+      - service: group.set
+        data_template:
+          object_id: entertainment_group_total_power
+          icon: mdi:hvac
+          entities: >
+            {% from 'filtered_entities.jinja' import getFilteredEntities %}
+            {{ getFilteredEntities('entertainment', '_current_consumption') }}
+
+
+      - service: group.set
+        data_template:
+          object_id: group_total_power
+          icon: mdi:flash-outline
+          entities: >
+            {% set ns = namespace(entities=[]) %}
+            {% for s in states.sensor if(s.object_id.endswith('_group_total_power')) %}
+              {% set ns.entities = ns.entities + [ s.entity_id ] %}
+            {% endfor %}
+            {{ ns.entities }}

@@ -1,0 +1,28 @@
+#homeassistant:
+#  customize:
+#    sensor.technology_group_total_energy:
+#    friendly_name: "Tech Devices"
+
+#sensor:
+#  - platform: integration
+#    name: technology_group_total_energy
+#    source: sensor.template_technology_group_total_power
+#    <<: &energy_calculation_defaults
+#      unit_time: h
+#      unit_prefix: k
+#      round: 2
+#
+#  - platform: integration
+#    name: appliance_group_total_energy
+#    source: sensor.appliance_group_total_power
+#    <<: *energy_calculation_defaults
+#
+#  - platform: integration
+#    name: hvac_group_total_energy
+#    source: sensor.hvac_group_total_power
+#    <<: *energy_calculation_defaults
+#
+#  - platform: integration
+#    name: entertainment_group_total_energy
+#    source: sensor.entertainment_group_total_power
+#    <<: *energy_calculation_defaults

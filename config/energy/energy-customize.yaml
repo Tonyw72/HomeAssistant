@@ -1,0 +1,12 @@
+#homeassistant:
+#  customize:
+    #sensor.technology_group_total_power:
+    #  friendly_name: "Tech Devices"
+    #sensor.appliance_group_total_power:
+    #  friendly_name: "Appliances"
+    #sensor.hvac_group_total_power:
+    #  friendly_name: "HVAC Equipment"
+    #sensor.networking_subgroup_total_power:
+    #  friendly_name: "Networking"
+    #sensor.entertainment_group_total_power:
+    #  friendly_name: "Entertainment Devices"

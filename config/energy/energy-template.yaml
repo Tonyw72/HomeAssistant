@@ -1,0 +1,30 @@
+sensor:
+- platform: template
+  sensors:
+#------Tiered electricity price------#
+      energy_price_tier1:
+        friendly_name: "Tier1 Price"
+        value_template: "0.148799"
+        unit_of_measurement: '$'
+      energy_tier1:
+        friendly_name: "Tier1 Energy"
+        value_template: "300"
+        unit_of_measurement: 'kWh'
+
+      energy_price_tier2:
+        friendly_name: "Tier2 Price"
+        value_template: "0.108297"
+        unit_of_measurement: '$'
+      energy_tier2:
+        friendly_name: "Tier2 Energy"
+        value_template: "700"
+        unit_of_measurement: 'kWh'
+
+      energy_price_tier3:
+        friendly_name: "Tier3 Price"
+        value_template: "0.098147"
+        unit_of_measurement: '$'
+      energy_tier3:
+        friendly_name: "Tier3 Energy"
+        value_template: "1000"
+        unit_of_measurement: 'kWh'

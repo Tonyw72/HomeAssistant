@@ -1,9 +1,12 @@
 # Custom Dictionary Words
 alexa
+ccpk
+divisibleby
 endfor
 endmacro
 endswith
 homeassistant
 hvac
+Owasco
 USGS
 ynab

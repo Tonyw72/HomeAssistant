@@ -2,6 +2,10 @@ sensor:
 - platform: template
   sensors:
 #------Tiered electricity price------#
+# These are the current tariffs for Duke Energy in Indiana
+# https://www.duke-energy.com/home/billing/rates/electric-tariff
+# needed for the IAMMETER integration
+# https://imeter.club/topic/374?sort=default#integrate-energy-meter
       energy_price_tier1:
         friendly_name: "Tier1 Price"
         value_template: "0.148799"

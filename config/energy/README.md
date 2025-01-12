@@ -14,7 +14,7 @@
 # Introduction
 I wanted to make this dashboard as easy to update as possible, so I started with [ccpk1's repo Home-Assistant-Energy-Management](https://github.com/ccpk1/Home-Assistant-Energy-Management)
 
-I [split the configuration](https://www.home-assistant.io/docs/configuration/splitting_configuration/) using the *include_dir_merge_named* method
+To make things a bit easier to edit than one big [split the configuration](https://www.home-assistant.io/docs/configuration/splitting_configuration/) using the *include_dir_merge_named* method
 
 
 ![File list](./../../images/energy_filelist.png)
@@ -39,6 +39,7 @@ This is no longer needed, since I switched to using the ***unique_id*** in the t
 Apparently the was a change in the HomeAssistant code that removed the necessity of configuring the  *Integration Sensors* so the *energy-sensors.yaml* file has been commented out, to be removed at a later date.
 
 ## Template
+For setting up the tiered energy rates, to hopefully utilize either the IAMMETER integration or their dashboard example once I have all my circuits monitored.
 
 ## Triggers
 

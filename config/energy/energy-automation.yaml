@@ -62,7 +62,6 @@ automation:
             {% from 'filtered_entities.jinja' import getFilteredEntities %}
             {{ getFilteredEntities('entertainment', '_current_consumption') }}
 
-
       - service: group.set
         data_template:
           object_id: group_total_power
